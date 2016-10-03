@@ -8,10 +8,13 @@
 		* @parm {Object} options
 		*/
 		constructor (options) {
-			this.el = options.el; // HTMLElement меню
+			this.el = options.el;
+			this.data = options.data;
 
 			this._init();
 			this._initEvents();
+
+			this.render();
 		}
 
 		_init () {
@@ -34,13 +37,35 @@
 			event.preventDefault();
 			let target = event.target;
 
-			if (target.classList.contains('menu__toggle')) {
+			if (target.classList.contains('menu__title')) {
 				this.toggle();
 			}
 
 			if (target.classList.contains('menu__item')) {
 				this.toggleItem(event.target);
 			}
+		}
+
+		render () {
+			this.el.innerHTML = '';
+
+			let title = document.createElement('a');
+			title.classList.add('menu__title');
+			title.innerHTML = this.data.title;
+
+			let list = document.createElement('ul');
+			list.classList.add('menu__list');
+
+			this.data.items.forEach(itemData => {
+				let item = document.createElement('li');
+				item.classList.add('menu__item');
+
+				item.innerHTML = itemData.anchor;
+				list.appendChild(item);
+			});
+
+			this.el.appendChild(title);
+			this.el.appendChild(list);
 		}
 
 		/**
