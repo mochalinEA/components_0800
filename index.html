@@ -6,9 +6,23 @@
 	<title>Курсовой проект learn.javascript.ru</title>
 
 	<link rel="stylesheet" type="text/css" href="libs/pure/pure-min.css" />
+	<link rel="stylesheet" type="text/css" href="components/menu/menu.css">
+
+	<script src="components/menu/menu.js"></script>
 </head>
 <body>
-	<h1>Курсовой проект learn.javascript.ru</h1>
-	<h3>Группа 15.08 0800</h3>
+
+    <div class="menu menu_close js-menu">
+      <a href="/" class="menu__toggle">Сладости</a>
+      <ul class="menu__list">
+        <li data-highlight="#be2099" class="menu__item menu__item_selected">Торт</li>
+        <li data-highlight="#be2099" class="menu__item menu__item_disable">Пончик</li>
+        <li data-highlight="#20be20" class="menu__item">Профитроль</li>
+        <li class="menu__item">Конфета</li>
+      </ul>
+    </div>
+
+
+    <script src="components/app/app.js"></script>
 </body>
 </html>
