@@ -8,18 +8,25 @@
 		title: 'Рабочие',
 		items: [
 			{
-				anchor: 'mail.ru'
+				anchor: 'mail.ru',
+				removable: true,
 			},
 			{
-				anchor: 'yandex.ru'
+				anchor: 'yandex.ru',
+				removable: true,
 			},
 			{
-				anchor: 'google.com'
+				anchor: 'kgb.by',
+				removable: false,
+			},
+			{
+				anchor: 'google.com',
+				removable: true,
 			}
 		]
 	};
 
-	let menu = new Menu({
+	new Menu({
 		el: document.querySelector('.js-menu'),
 		data
 	});
