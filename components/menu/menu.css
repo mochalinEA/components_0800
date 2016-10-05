@@ -44,10 +44,12 @@
 }
 
 .menu__item {
+	position: relative;
 	cursor: pointer;
 	color: #00f;
 	text-decoration: none;
 	margin-top: 0.35em;
+	width: 300px;
 }
 
 .menu__item_selected {
@@ -62,4 +64,9 @@
 	width: 1px;
 	height: 1px;
 	border: 0;
+}
+
+.menu__remove {
+	position: absolute;
+	right: 0;
 }

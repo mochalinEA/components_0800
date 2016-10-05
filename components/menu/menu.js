@@ -11,14 +11,9 @@
 			this.el = options.el;
 			this.data = options.data;
 
-			this._init();
 			this._initEvents();
 
 			this.render();
-		}
-
-		_init () {
-			this.items = this.el.querySelectorAll('.menu__item');
 		}
 
 		/**
@@ -42,11 +37,44 @@
 			}
 
 			if (target.classList.contains('menu__item')) {
-				this.toggleItem(event.target);
+				this.toggleItem(target);
+			}
+
+			if (target.classList.contains('menu__remove')) {
+				let item  = target.closest('.menu__item');
+				this.removeItem(item);
+			}
+
+			if (target.classList.contains('menu__remove')) {
+				let item  = target.closest('.menu__item');
+				this.removeItem(item);
+			}
+
+			if (target.classList.contains('menu__add')) {
+				let list = this.el.querySelector('.menu__list');
+				let itemData = {
+					anchor: this.el.querySelector('.menu__input').value,
+					removable: true,
+				};
+
+				if (itemData.anchor.length) {
+					this.addItem(itemData, list);
+				}
 			}
 		}
 
+		/**
+		 * Отрисовка компонента
+		 */
 		render () {
+			this.renderList();
+			this.renderForm();
+		}
+
+		/**
+		 * Отрисовка списка
+		 */
+		renderList () {
 			this.el.innerHTML = '';
 
 			let title = document.createElement('a');
@@ -57,15 +85,54 @@
 			list.classList.add('menu__list');
 
 			this.data.items.forEach(itemData => {
-				let item = document.createElement('li');
-				item.classList.add('menu__item');
-
-				item.innerHTML = itemData.anchor;
-				list.appendChild(item);
+				this.addItem(itemData, list);
 			});
 
 			this.el.appendChild(title);
 			this.el.appendChild(list);
+		}
+
+		/**
+		 * Добавление новго элемента в список
+		 * @param {Object} itemData
+		 * @param {HTMLElement} list
+		 */
+		addItem (itemData, list) {
+			let item = document.createElement('li');
+			item.classList.add('menu__item');
+			item.innerHTML = itemData.anchor;
+
+			if (itemData.removable) {
+				let removeButton = document.createElement('button');
+				removeButton.classList.add('menu__remove');
+				removeButton.innerHTML = 'x';
+
+				item.appendChild(removeButton);
+			}
+
+			list.appendChild(item);
+		}
+
+		/**
+		 * Отрисовка формы добавления нового элемента
+		 */
+		renderForm () {
+			let form = document.createElement('form');
+			form.classList.add('menu__form', 'pure-form');
+
+			let input = document.createElement('input');
+			input.setAttribute('type', 'text');
+			input.classList.add('menu__input', 'pure-input-rounded');
+
+			let button = document.createElement('button');
+			button.setAttribute('tupe', 'submit');
+			button.classList.add('menu__add', 'pure-button');
+			button.innerHTML = 'Add';
+
+			form.appendChild(input);
+			form.appendChild(button);
+
+			this.el.appendChild(form)
 		}
 
 		/**
@@ -78,20 +145,18 @@
 		}
 
 		/**
-		* Переключение состояния меню
-		*/
-		toggle() {
-			this.el.classList.toggle('menu_close');
+		 * Удаление выбранного элемента
+		 * @param {HTMLElement} elem
+		 */
+		removeItem (elem) {
+			elem.remove();
 		}
 
 		/**
-		* Получение данных о состоянии меню 
-		* @returns {Array}
+		* Переключение состояния меню
 		*/
-		getData () {
-			return Array.prototype.filter.call(this.items, item => {
-				return item.classList.contains('menu__item_selected');
-			}).map(el => el.innerHTML);
+		toggle () {
+			this.el.classList.toggle('menu_close');
 		}
 	}
 
