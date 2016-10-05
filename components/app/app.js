@@ -19,7 +19,7 @@
 		]
 	};
 
-	let menu = new Menu({
+	new Menu({
 		el: document.querySelector('.js-menu'),
 		data
 	});
