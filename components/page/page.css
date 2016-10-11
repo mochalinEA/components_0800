@@ -1,0 +1,18 @@
+.page{
+}
+
+.page__wrapper{
+    margin: 0 auto;
+    padding: 10px;
+    min-width: 400px;
+    max-width: 80%;
+    background: #8e9ed8;
+    border-radius: 5px;
+}
+.page__title{
+    margin: 0 auto;
+}
+
+.page__container{
+
+}

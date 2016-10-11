@@ -1,34 +1,20 @@
 (function () {
-	'use strict';
+  'use strict';
 
-	// import
-	let Menu = window.Menu;
+  function getTemplate(name) {
+    return document.querySelector(`#templates > .tpl-${name}`).innerHTML;
+  }
 
-	let data = {
-		title: 'Рабочие',
-		items: [
-			{
-				anchor: 'mail.ru',
-				removable: true,
-			},
-			{
-				anchor: 'yandex.ru',
-				removable: true,
-			},
-			{
-				anchor: 'kgb.by',
-				removable: false,
-			},
-			{
-				anchor: 'google.com',
-				removable: true,
-			}
-		]
-	};
+  function renderTemplate(tpl, data) {
+    return nunjucks.renderString(tpl, data);
+  }
 
-	new Menu({
-		el: document.querySelector('.js-menu'),
-		data
-	});
+  const tpl = getTemplate('item');
+  const html = renderTemplate(tpl, {
+    id: 2,
+    title: 'yandex',
+    href: 'http://ya.ru',
+  });
 
+  console.log('>>>', html);
 })();
