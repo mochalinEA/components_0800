@@ -1,20 +1,40 @@
 (function () {
   'use strict';
 
-  function getTemplate(name) {
-    return document.querySelector(`#templates > .tpl-${name}`).innerHTML;
-  }
+  // import
+  let Utils = window.Utils;
+  let Menu = window.Menu;
+  let List = window.List;
+  let Form = window.Form;
 
-  function renderTemplate(tpl, data) {
-    return nunjucks.renderString(tpl, data);
-  }
+  const data = {
+    items: [
+      {
+        id: 1,
+        title: 'Nunjucks',
+        href: 'https://mozilla.github.io/nunjucks/',
+      },
+      {
+        id: 2,
+        title: 'yandex',
+        href: 'http://ya.ru',
+      },
+      {
+        id: 3,
+        title: 'Курсовой проект 8:00',
+        href: 'https://github.com/iketari/components_0800',
+      }
+    ]
 
-  const tpl = getTemplate('item');
-  const html = renderTemplate(tpl, {
-    id: 2,
-    title: 'yandex',
-    href: 'http://ya.ru',
+  };
+
+  new List({
+    el: document.querySelector('.js-list'),
+    data
   });
 
-  console.log('>>>', html);
+  new Form({
+    el: document.querySelector('.js-form'),
+    data
+  });
 })();

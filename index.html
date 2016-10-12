@@ -5,11 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Курсовой проект learn.javascript.ru</title>
 
-	<link rel="stylesheet" type="text/css" href="components/utils/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="utils/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="components/app/app.css">
 	<link rel="stylesheet" type="text/css" href="components/page/page.css">
-	<link rel="stylesheet" type="text/css" href="components/item/item.css">
 	<link rel="stylesheet" type="text/css" href="components/list/list.css">
+	<link rel="stylesheet" type="text/css" href="components/list/item.css">
+	<link rel="stylesheet" type="text/css" href="components/form/form.css">
 	<link rel="stylesheet" type="text/css" href="components/menu/menu.css">
 </head>
 <body class="app">
@@ -18,40 +19,29 @@
 	<div class="page__wrapper">
 		<div class="page__container">
 			<h1 class="page__title">Спиок нужных ссылок</h1>
-			<ul class="list">
-				<li class="list__item">
-					<div class="item">
-						<div class="item__wrapper">
-							<div class="item__content">
-								<span class="item__id">1</span>
-								<div class="item__text">
-									<div class="item__title">Nunjucks</div>
-									<a class="item__href" href="https://mozilla.github.io/nunjucks/api.html">
-										https://mozilla.github.io/nunjucks/api.html</a>
-								</div>
-							</div>
-							<div class="item__buttons">
-								<a href="javascript:;" class="item__button" data-type="edit">
-									<i class="fa fa-gear fa-2x"></i></a>
-								<a href="javascript:;" class="item__button" data-type="remove">
-									<i class="fa fa-close fa-2x"></i></a>
-							</div><!-- /item__buttons-->
-						</div><!-- /item__wrapper-->
-					</div><!-- /item-->
-				</li><!-- /list__item-->
+			<ul class="list js-list">
 			</ul><!-- /list-->
 		</div><!-- /page__container-->
 	</div><!-- /page__wrapper-->
+	<form class="form js-form is-active">
+		<div class="form__shim"></div>
+		<div class="form__container js-form-container">
+
+		</div><!-- /form__container -->
+	</form><!-- /form -->
 </div><!-- /page-->
 </div>
 
 <div id="templates">
-	<template class="tpl-page">
-
+	<template class="tpl-form-welcome">
+		<div class="form__layout">
+			<div class="form__message">Welcome ! skjdfhjkds fhjkdsh jkfhkjsd kjfhkjsd hfkjhs dkjfjkh sdjkfkjh sdkj</div>
+		</div>
 	</template>
 
-	<template class="tpl-item">
-		<div class="item">
+	<template class="tpl-list-item">
+		<li class="list__item js-list-item" data-id="{{ id }}" data-title="{{ title }}" data-href="{{ href }}">
+		<div class="item js-item">
 			<div class="item__wrapper">
 				<div class="item__content">
 					<span class="item__id">{{ id }}</span>
@@ -62,15 +52,26 @@
 					</div>
 				</div>
 				<div class="item__buttons">
-					<a href="javascript:;" class="item__button" data-action="edit">
+					<a href="javascript:;" class="item__button js-list-item-button" data-action="edit">
 						<i class="fa fa-gear fa-2x"></i></a>
-					<a href="javascript:;" class="item__button" data-action="remove">
+					<a href="javascript:;" class="item__button js-list-item-button" data-action="remove">
 						<i class="fa fa-close fa-2x"></i></a>
 				</div><!-- /item__buttons-->
 			</div><!-- /item__wrapper-->
 		</div><!-- /item-->
+		</li><!-- /list__item -->
 	</template>
 </div>
 
+<script src="utils/nunjucks.js"></script>
+<script src="utils/utils.js"></script>
+<script src="components/list/list.js"></script>
+<script src="components/menu/menu.js"></script>
+<script src="components/form/form.js"></script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
+<script src=""></script>
+<script src="components/app/app.js"></script>
 </body>
 </html>
