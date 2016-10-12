@@ -1,5 +1,5 @@
 .item{
-
+    text-align: left;
 }
 
 .item__wrapper{
@@ -18,10 +18,12 @@
 }
 
 .item__title{
+    color: #6ebdfc;
     font-size: 20px;
 }
 
 .item__href{
+    color: #acacac;
     font-size: 10px;
 }
 

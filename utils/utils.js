@@ -10,7 +10,6 @@
     }
 
     getTemplate(name) {
-      console.log(name);
       return document.querySelector(`#templates > .tpl-${name}`).innerHTML;
     }
 
@@ -18,13 +17,14 @@
       return nunjucks.renderString(tpl, data);
     }
 
-    trigger (name, data) {
+    trigger (el, name, data) {
       let event = new CustomEvent(name, {
         bubbles: true,
         detail: data
       });
 
-      this.el.dispatchEvent(event);
+      el.dispatchEvent(event);
+      console.log(event);
     }
 
   }

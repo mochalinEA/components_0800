@@ -4,7 +4,7 @@
 }
 
 .list__item{
-    border: 1px white solid;
+    border-bottom: 1px #5CC3D8 solid;
     border-radius: 5px;
 }
 

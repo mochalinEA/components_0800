@@ -1,16 +1,20 @@
 {
   "items": [
     {
+      "id": 0,
       "title": "Nunjucks",
-      "href": "https://mozilla.github.io/nunjucks/api.html",
+      "href": "https://mozilla.github.io/nunjucks/api.html"
     },
     {
+      "id": 1,
       "title": "Yandex",
-      "href": "http://ya.ru",
+      "href": "http://ya.ru"
     },
     {
+      "id": 2,
       "title": "Learn JS",
-      "href": "http://learn.javascript.ru",
-    },
+      "href": "http://learn.javascript.ru"
+    }
   ]
 }
+

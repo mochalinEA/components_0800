@@ -11,31 +11,79 @@
 	<link rel="stylesheet" type="text/css" href="components/list/list.css">
 	<link rel="stylesheet" type="text/css" href="components/list/item.css">
 	<link rel="stylesheet" type="text/css" href="components/form/form.css">
-	<link rel="stylesheet" type="text/css" href="components/menu/menu.css">
 </head>
 <body class="app">
 
-<div class="page">
+<div class="page js-page">
 	<div class="page__wrapper">
-		<div class="page__container">
+		<div class="page__container js-list">
 			<h1 class="page__title">Спиок нужных ссылок</h1>
-			<ul class="list js-list">
+			<ul class="list js-list-container">
 			</ul><!-- /list-->
+            <a href="javascript:;" class="item__button js-list-item-button" data-action="edit">
+                <i class="fa fa-plus-square-o fa-2x"></i></a>
 		</div><!-- /page__container-->
 	</div><!-- /page__wrapper-->
 	<form class="form js-form is-active">
-		<div class="form__shim"></div>
+		<div class="form__shim js-form-shim"></div>
 		<div class="form__container js-form-container">
-
 		</div><!-- /form__container -->
 	</form><!-- /form -->
 </div><!-- /page-->
 </div>
 
 <div id="templates">
+	<template class="tpl-form-edit">
+		<div class="form__layout">
+			<div class="form__message">
+				<span>{% if id %}Редактирование{% else %}Добавление{% endif %} элемента</span>
+            </div>
+            <div class="form__description">
+                <span>({{ id }} {{ title }})</span>
+            </div>
+            <div class="form__fields">
+                <input type="hidden" name="formId" value="{{ id }}">
+                <div class="form__field">
+                    <label for="form-input-title" class="form__label">title:</label>
+                    <input id="form-input-title" name="formTitle" type="text" class="form__input" data-field="title"
+                           value="{{ title }}">
+                </div>
+                <div class="form__field">
+                    <label for="form-input-href" class="form__label">href:</label>
+                    <input id="form-input-href" name="formHref" type="text" class="form__input" data-field="href"
+                           value="{{ href }}">
+                </div>
+            </div>
+            <div class="form__buttons">
+                <button type="submit"><i class="form__button fa fa-check fa-2x" data-action="yes"></i></button>
+                <button type="reset"><i class="form__button fa fa-close fa-2x" data-action="no"></i></button>
+            </div>
+        </div>
+	</template>
+
+	<template class="tpl-form-delete">
+		<div class="form__layout">
+			<div class="form__message">
+				<span>Удалить выбранный элемент?</span>
+            </div>
+            <div class="form__description">
+                <span>({{ id }} {{ title }})</span>
+            </div>
+            <div class="form__fields">
+                <input type="hidden" name="formId" value="{{ id }}">
+            </div>
+            <div class="form__buttons">
+                <button type="submit"><i class="form__button fa fa-check fa-2x" data-action="yes"></i></button>
+                <button type="reset"><i class="form__button fa fa-close fa-2x" data-action="no"></i></button>
+            </div>
+		</div>
+	</template>
+
 	<template class="tpl-form-welcome">
 		<div class="form__layout">
-			<div class="form__message">Welcome ! skjdfhjkds fhjkdsh jkfhkjsd kjfhkjsd hfkjhs dkjfjkh sdjkfkjh sdkj</div>
+			<div class="form__message">
+				<span>Welcome !</span>
+			</div>
 		</div>
 	</template>
 
@@ -52,9 +100,11 @@
 					</div>
 				</div>
 				<div class="item__buttons">
-					<a href="javascript:;" class="item__button js-list-item-button" data-action="edit">
+					<a href="javascript:;" class="item__button js-list-item-button" data-action="edit"
+                            data-id="{{ id }}" data-title="{{ title }}" data-href="{{ href }}">
 						<i class="fa fa-gear fa-2x"></i></a>
-					<a href="javascript:;" class="item__button js-list-item-button" data-action="remove">
+					<a href="javascript:;" class="item__button js-list-item-button" data-action="delete"
+                            data-id="{{ id }}" data-title="{{ title }}">
 						<i class="fa fa-close fa-2x"></i></a>
 				</div><!-- /item__buttons-->
 			</div><!-- /item__wrapper-->
@@ -65,9 +115,10 @@
 
 <script src="utils/nunjucks.js"></script>
 <script src="utils/utils.js"></script>
+<script src="components/page/page.js"></script>
 <script src="components/list/list.js"></script>
-<script src="components/menu/menu.js"></script>
 <script src="components/form/form.js"></script>
+<script src="components/model/model.js"></script>
 <script src=""></script>
 <script src=""></script>
 <script src=""></script>

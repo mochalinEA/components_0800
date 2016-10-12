@@ -11,15 +11,11 @@
      */
     constructor(options) {
       this.el = options.el;
-      this.data = options.data;
+      this._eventsHandlers = {};
 
       this.tplItem = utils.getTemplate('list-item');
+      this.container = this.el.querySelector('.js-list-container');
 
-      this.refresh()
-    }
-
-    refresh() {
-      this.render();
       this.addEventListeners();
     }
 
@@ -29,7 +25,7 @@
         html += utils.renderTemplate(this.tplItem, item);
       });
 
-      this.el.innerHTML = html;
+      this.container.innerHTML = html;
     }
 
     addEventListeners() {
@@ -42,15 +38,33 @@
         return;
       }
 
-      const item = button.closest('.js-list-item');
-      const data = {
-        id: item.id,
-        action: item.action,
-      };
-
-      this.el.trigger('action', data);
-      console.log(button);
+      this.trigger(button.dataset.action, button.dataset);
     }
+
+    trigger (name, data) {
+      const event = new CustomEvent(name, {
+        bubbles: true,
+        detail: data
+      });
+
+      if (this._eventsHandlers[name]) {
+        this._eventsHandlers[name].forEach(callback => callback(event));
+      }
+    }
+
+    setData(data) {
+      this.data = data;
+    }
+
+    on (name, callback) {
+      if (!this._eventsHandlers[name]) {
+        this._eventsHandlers[name] = [];
+      }
+
+      this._eventsHandlers[name].push(callback);
+    }
+
+
 
   }
 
