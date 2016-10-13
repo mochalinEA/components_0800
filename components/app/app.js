@@ -2,7 +2,6 @@
   'use strict';
 
   // import
-  let Utils = window.Utils;
   let Page = window.Page;
   let List = window.List;
   let Form = window.Form;
@@ -22,7 +21,7 @@
   });
 
   const listModel = new Model({
-    resource: '/data/list.json'
+    resource: './data/list.json'
   });
 
   listModel.on('update', () => {
