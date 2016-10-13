@@ -17,8 +17,14 @@
       this.cssActive = options.cssActive || 'is-active';
       this.cssDisabled = options.cssDisabled || 'is-disabled';
 
+      this.init()
+    }
+
+    init() {
       this.addEventListeners();
+
       this.render('welcome');
+      setTimeout(this.hide.bind(this), 1000);
     }
 
     addEventListeners() {

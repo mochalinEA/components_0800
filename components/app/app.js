@@ -2,7 +2,6 @@
   'use strict';
 
   // import
-  let Utils = window.Utils;
   let Page = window.Page;
   let List = window.List;
   let Form = window.Form;

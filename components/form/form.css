@@ -40,7 +40,7 @@
     display: flex;
     flex-flow: column nowrap;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .form__message {
